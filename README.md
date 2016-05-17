@@ -1,5 +1,6 @@
 # jpnewman.locale-timezone
 
+[![Ansible Role](https://img.shields.io/ansible/role/9596.svg?maxAge=2592000)](https://galaxy.ansible.com/jpnewman/locale-timezone/)
 [![Build Status](https://travis-ci.org/jpnewman/ansible-role-locale-timezone.svg?branch=master)](https://travis-ci.org/jpnewman/ansible-role-locale-timezone)
 
 This is a Ansible role to config
