@@ -1,15 +1,15 @@
 ---
 # tasks file for jpnewman.locale-timezone
-- name: set locale
+- name: Set locale
   locale_gen: name='{{ locale }}'
 
-- name: check current timezone
+- name: Check current timezone
   shell: cat /etc/timezone
   register: current_zone
   always_run: yes
   changed_when: false
 
-- name: set timezone
+- name: Set timezone
   copy:
     content: "{{ timezone }}"
     dest: /etc/timezone
@@ -20,5 +20,5 @@
   when: current_zone.stdout != timezone
   notify: update timezone
 
-- name: set localtime
+- name: Set localtime
   file: src=/usr/share/zoneinfo/{{ timezone }} dest=/etc/localtime state=link force=yes
