@@ -7,7 +7,7 @@
   shell: cat /etc/timezone
   register: current_zone
   always_run: yes
-  changed_when: false
+  changed_when: False
 
 - name: Set timezone
   copy:
@@ -16,7 +16,6 @@
     owner: root
     group: root
     mode: 0644
-    backup: yes
   when: current_zone.stdout != timezone
   notify: update timezone
 
