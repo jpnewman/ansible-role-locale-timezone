@@ -6,7 +6,7 @@
 - name: Check current timezone
   shell: cat /etc/timezone
   register: current_zone
-  always_run: yes
+  check_mode: no
   changed_when: False
 
 - name: Set timezone
