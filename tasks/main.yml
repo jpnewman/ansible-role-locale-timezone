@@ -3,21 +3,25 @@
 - name: Set locale
   locale_gen: name='{{ locale }}'
 
-- name: Check current timezone
-  shell: cat /etc/timezone
-  register: current_zone
-  check_mode: no
-  changed_when: False
-
 - name: Set timezone
-  copy:
-    content: "{{ timezone }}"
-    dest: /etc/timezone
-    owner: root
-    group: root
-    mode: 0644
-  when: current_zone.stdout != timezone
-  notify: update tzdata
+  timezone:
+    name: "{{ timezone }}"
+  register: tz
+  notify:
+    - update tzdata
+    - restart crond
+
+- name: Debug
+  debug:
+    msg: "{{ tz }}"
 
 - name: Set localtime
-  file: src=/usr/share/zoneinfo/{{ timezone }} dest=/etc/localtime state=link force=yes
+  file:
+    src: "/usr/share/zoneinfo/{{ timezone }}"
+    dest: /etc/localtime
+    state: link
+    force: yes
+  when: tz.diff.before != tz.diff.after
+  notify:
+    - update tzdata
+    - restart crond
