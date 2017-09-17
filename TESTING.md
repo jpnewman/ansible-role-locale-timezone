@@ -1,18 +1,13 @@
 
 # Testing
 
-## Install Dependencies
-
-~~~
-pip install -r requirements.txt
-~~~
-
 ### VirtualBox
 
 > Mac OS X
 
 ~~~
 brew cask install virtualbox
+brew cask install virtualbox-extension-pack
 ~~~
 
 ### Vagrant
