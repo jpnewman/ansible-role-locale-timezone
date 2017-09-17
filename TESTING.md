@@ -1,6 +1,12 @@
 
 # Testing
 
+## Install Dependencies
+
+~~~
+pip install -r requirements.txt
+~~~
+
 ### VirtualBox
 
 > Mac OS X
